@@ -3,22 +3,22 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Taran Balakrishnan — Bioengineering, Computation & Strategy</title>
+<title>Taran Balakrishnan</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/lucide@latest"></script>
 <style>
 /* ============================================================
    0. TOKENS
    ============================================================ */
 :root{
-  --font:'Plus Jakarta Sans','Inter',-apple-system,BlinkMacSystemFont,'Helvetica Neue',sans-serif;
-  --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  --font:-apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text','Inter','Helvetica Neue','Segoe UI',sans-serif;
+  --mono:'SF Mono',SFMono-Regular,ui-monospace,'JetBrains Mono',Menlo,monospace;
   --ease:cubic-bezier(.22,1,.36,1);
   --spring:cubic-bezier(.32,.75,.25,1);
   --topbar:28px;
-  --glass-blur:18px;     
+  --glass-blur:18px;
   --glass-alpha:.344;
   --glass-surface-alpha:clamp(.34,var(--glass-alpha),.96);
   --content-glass-alpha:clamp(.58,var(--glass-alpha),.96);
@@ -127,6 +127,7 @@ a{color:inherit}
 .glass::before{
   content:'';position:absolute;inset:0;pointer-events:none;border-radius:inherit;
   background:
+    radial-gradient(380px circle at var(--mx,50%) var(--my,0px),rgba(255,255,255,var(--spec)),transparent 62%),
     linear-gradient(180deg,
       rgba(255,255,255,.16) 0%,
       rgba(255,255,255,.04) 22%,
@@ -147,14 +148,14 @@ a{color:inherit}
   background:linear-gradient(160deg,rgba(var(--glass-rgb),calc(var(--glass-surface-alpha)*.55)),rgba(var(--glass-rgb),calc(var(--glass-surface-alpha)*.85)));
   color:var(--ink);
   font-size:13px;font-weight:500;cursor:pointer;text-decoration:none;
-  transition:transform .25s var(--ease),background .25s,border-color .25s,box-shadow .25s;
+  transition:transform .4s var(--spring),background .25s,border-color .25s,box-shadow .25s,filter .25s;
   backdrop-filter:blur(var(--glass-blur));-webkit-backdrop-filter:blur(var(--glass-blur));
   box-shadow:inset 0 1px 0 var(--glass-hi),0 2px 6px -2px rgba(0,0,0,.15);
 }
-.btn:hover{transform:translateY(-2px);border-color:color-mix(in srgb,var(--a1) 50%,transparent);box-shadow:inset 0 1px 0 var(--glass-hi),0 8px 20px -8px color-mix(in srgb,var(--a1) 50%,transparent)}
+.btn:hover{transform:scale(1.03);border-color:color-mix(in srgb,var(--ink) 28%,transparent)}
 .btn:active{transform:translateY(0) scale(.97)}
 .btn.primary{background:linear-gradient(135deg,var(--a1),var(--a2));color:var(--a-ink);border-color:transparent;font-weight:600}
-.btn.primary:hover{box-shadow:0 12px 30px -12px color-mix(in srgb,var(--a1) 70%,transparent)}
+.btn.primary:hover{filter:brightness(1.08);border-color:transparent}
 .btn.ghost{background:transparent;box-shadow:inset 0 0 0 1px var(--line)}
 .btn.ghost:hover{background:color-mix(in srgb,var(--ink) 6%,transparent)}
 .btn.small{padding:6px 12px;font-size:12px}
@@ -295,25 +296,30 @@ html[data-view="minimal"] .tb-menu{display:none}
   position:relative;z-index:1;padding:calc(var(--topbar) + 36px) 28px 80px;
   max-width:1120px;margin:0 auto;
 }
-.hero{max-width:880px;margin-bottom:40px}
+.hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,360px);gap:32px;align-items:stretch}
+.hero-intro{min-width:0;display:flex;flex-direction:column;align-items:flex-start}
 .hero-pill{
   display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:999px;
   font-size:12.5px;letter-spacing:.01em;color:var(--ink-2);font-weight:500;
   background:rgba(var(--glass-rgb),calc(var(--glass-surface-alpha)*1.4));border:1px solid var(--glass-border);
   backdrop-filter:blur(var(--glass-blur));-webkit-backdrop-filter:blur(var(--glass-blur));
 }
-.hero-pill .pdot{width:6px;height:6px;border-radius:50%;background:var(--a1);box-shadow:0 0 10px var(--a1)}
+.hero-pill .pdot{width:6px;height:6px;border-radius:50%;background:var(--a1)}
 .hero-name{
-  font-size:clamp(46px,7.6vw,80px);font-weight:700;letter-spacing:-.048em;
-  line-height:1.02;margin:18px 0 8px;min-height:1.05em;
+  font-size:clamp(40px,6.2vw,68px);font-weight:650;letter-spacing:-.035em;
+  line-height:1.04;margin:16px 0 10px;min-height:1.05em;
 }
-.hero-tag{font-size:clamp(18px,2.5vw,26px);color:var(--ink-2);min-height:1.5em;font-weight:500;letter-spacing:-.02em}
-.hero-sub{
-  max-width:680px;color:var(--ink-2);font-size:16.5px;line-height:1.72;margin:16px 0 0;
+.hero-sub{max-width:520px;color:var(--ink-2);font-size:17px;line-height:1.5;letter-spacing:-.015em;margin:0}
+.hero-cta{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px;align-items:center}
+.hero-links{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:auto;padding-top:24px}
+.hero-links a,.hero-links button{
+  display:inline-flex;align-items:center;gap:6px;padding:0;border:0;background:none;
+  font-size:13px;color:var(--muted);cursor:pointer;text-decoration:none;transition:color .2s var(--ease);
 }
+.hero-links a:hover,.hero-links button:hover{color:var(--ink)}
+.hero-links svg{width:13px;height:13px;flex-shrink:0}
 .contact-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
 .contact-row .btn{font-size:13px;padding:8px 14px}
-.hero-cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px;align-items:center}
 .typing::after{
   content:'';display:inline-block;width:2px;height:.92em;margin-left:2px;
   background:var(--a1);vertical-align:-.08em;animation:caret .9s steps(1) infinite;
@@ -322,7 +328,7 @@ html[data-view="minimal"] .tb-menu{display:none}
 
 .m-grid{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:36px;align-items:start}
 .sec-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:10px;padding-top:4px}
-.sec-head h2{font-size:17px;font-weight:600;letter-spacing:-.01em;margin:0}
+.sec-head h2{font-size:19px;font-weight:600;letter-spacing:-.02em;margin:0}
 .sec-head span{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
 .m-side{display:flex;flex-direction:column;gap:14px;position:sticky;top:calc(var(--topbar) + 16px)}
 
@@ -332,9 +338,9 @@ html[data-view="minimal"] .tb-menu{display:none}
 .proj-head{
   width:100%;display:flex;gap:13px;align-items:flex-start;text-align:left;
   background:none;border:0;padding:18px 8px;cursor:pointer;border-radius:12px;
-  transition:background .22s var(--ease),padding .22s var(--ease);
+  transition:background .22s var(--ease);
 }
-.proj-head:hover{background:rgba(var(--glass-2-rgb),.06);padding-left:13px;padding-right:13px}
+.proj-head:hover{background:rgba(var(--glass-2-rgb),.06)}
 .proj-dot{width:9px;height:9px;border-radius:50%;margin-top:6px;flex-shrink:0;box-shadow:0 0 0 4px color-mix(in srgb,var(--a1) 14%,transparent)}
 .proj-titles{flex:1;min-width:0}
 .proj-title{display:block;font-size:16px;font-weight:600;letter-spacing:-.015em;transition:color .2s}
@@ -476,10 +482,9 @@ html[data-mode="light"] .d-icon .lbl{background:rgba(255,255,255,.82);color:#1e1
 }
 #dw-appearance{right:18px;top:calc(var(--topbar) + 18px);width:252px}
 #dw-clock-calendar{right:286px;top:calc(var(--topbar) + 18px);width:326px}
-#dw-weather{right:18px;top:236px;width:252px}
-#dw-magraph{right:18px;top:346px;width:252px}
-#dw-links{right:286px;top:306px;width:218px}
-#dw-lor-quote{right:286px;top:424px;width:218px}
+#dw-flute{right:18px;top:191px;width:252px}
+#dw-magraph{right:18px;top:317px;width:252px}
+#dw-lor-quote{right:286px;top:300px;width:326px}
 .desktop-widget-floating{will-change:left,top;}
 .analog-clock{width:100%;height:auto;display:block;max-width:108px;margin:0 auto}
 .dw-date{font-size:9px;color:var(--muted);margin-top:4px;text-align:center;white-space:nowrap}
@@ -503,47 +508,7 @@ html[data-mode="light"] .d-icon .lbl{background:rgba(255,255,255,.82);color:#1e1
 .cal-foot{display:flex;align-items:center;gap:5px;margin-top:7px;padding-top:7px;border-top:1px solid var(--line);font-size:8.5px;color:var(--muted)}
 .cal-foot strong{margin-left:auto;color:var(--ink-2);font-size:8.5px;font-weight:600;white-space:nowrap}
 .cal-today-dot{width:5px;height:5px;border-radius:50%;background:var(--a1);box-shadow:0 0 8px color-mix(in srgb,var(--a1) 55%,transparent)}
-.lor-feature-widget{padding:13px 14px 12px}
-.lor-feature-widget .w-head{margin-bottom:8px}
-.lor-feature-widget .w-head h3{color:var(--a2)}
-.lor-feature-spark{font-size:14px;line-height:1;color:var(--a2);text-shadow:0 0 12px color-mix(in srgb,var(--a2) 35%,transparent)}
-.lor-feature-card{
-  padding:11px 12px 10px;border-radius:13px;
-  border:1px solid color-mix(in srgb,var(--a2) 26%,var(--line));
-  background:linear-gradient(145deg,color-mix(in srgb,var(--a2) 12%,var(--base)),color-mix(in srgb,var(--a1) 7%,var(--base)));
-  box-shadow:inset 0 1px 0 var(--glass-hi),0 5px 16px -12px rgba(0,0,0,.28);
-}
-.lor-feature-quote-mark{display:block;height:16px;color:var(--a1);font:32px/.8 Georgia,serif}
-.lor-feature-card blockquote{margin:3px 0 12px;color:var(--ink);font-size:12px;line-height:1.5;font-weight:600;letter-spacing:-.02em}
-.lor-feature-source{padding-top:8px;border-top:1px solid var(--line)}
-.lor-feature-source b{display:block;color:var(--ink-2);font:600 8px var(--mono);letter-spacing:.045em}
-.lor-feature-source span{display:block;margin-top:3px;color:var(--muted);font-size:9px;line-height:1.4}
-.lor-feature-link{
-  display:flex;align-items:center;gap:5px;margin-top:10px;padding:0;
-  border:0;background:none;color:var(--ink-2);font:600 10px var(--font);cursor:pointer;
-  transition:color .18s var(--ease);
-}
-.lor-feature-link:hover{color:var(--a1)}
-.lor-feature-link svg{width:12px;height:12px}
 .cv-magraph{width:100%;height:auto;display:block;border-radius:8px}
-
-/* Weather widget */
-.weather-row{display:flex;align-items:center;gap:10px}
-.weather-row .wx-icon{width:28px;height:28px;color:var(--a2);flex-shrink:0}
-.weather-row .wx-temp{font-size:24px;font-weight:700;letter-spacing:-.04em;line-height:1;font-family:var(--font)}
-.weather-row .wx-sub{font-size:10.5px;color:var(--muted);margin-top:2px}
-
-/* Quick links */
-.ql-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:2px}
-.ql-btn{
-  display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 4px;border-radius:10px;
-  background:rgba(var(--glass-2-rgb),.05);border:1px solid var(--line);
-  cursor:pointer;text-decoration:none;color:var(--ink);
-  transition:background .18s var(--ease),border-color .18s var(--ease),transform .18s var(--ease);
-  font-size:10px;font-weight:500;
-}
-.ql-btn:hover{background:color-mix(in srgb,var(--a1) 12%,transparent);border-color:color-mix(in srgb,var(--a1) 40%,transparent);transform:translateY(-1px)}
-.ql-btn svg{width:16px;height:16px}
 
 /* windows */
 .win{
@@ -692,15 +657,10 @@ html[data-mode="light"] #prompt-backdrop{background:rgba(60,40,80,.3)}
   box-shadow:0 50px 120px -30px rgba(0,0,0,.7),0 0 0 1px var(--glass-border),inset 0 1px 0 var(--glass-hi);
 }
 #prompt.show{opacity:1;transform:translate(-50%,-50%) scale(1);pointer-events:auto}
-#prompt .p-kicker{
-  display:inline-flex;align-items:center;gap:8px;font-size:10.5px;font-weight:600;
-  text-transform:uppercase;letter-spacing:.2em;color:var(--ink-2);margin-bottom:14px;
-}
-#prompt .p-kicker .pdot{width:7px;height:7px;border-radius:50%;background:var(--a1);box-shadow:0 0 12px var(--a1)}
 #prompt h4{margin:0 0 10px;font-size:clamp(26px,5.4vw,34px);font-weight:700;letter-spacing:-.04em;line-height:1.1}
 #prompt p{margin:0 0 18px;font-size:14.5px;line-height:1.65;color:var(--ink-2)}
 #prompt .p-preview{
-  display:flex;align-items:center;gap:10px;padding:10px 14px;margin:0 0 14px;border-radius:12px;
+  display:flex;align-items:center;gap:10px;padding:10px 14px;margin:0 0 22px;border-radius:12px;
   border:1px solid var(--line);background:color-mix(in srgb,var(--ink) 4%,transparent);
 }
 #prompt .p-preview .l{width:10px;height:10px;border-radius:50%;flex-shrink:0}
@@ -708,23 +668,11 @@ html[data-mode="light"] #prompt-backdrop{background:rgba(60,40,80,.3)}
 #prompt .p-preview .l.y{background:#febc2e}
 #prompt .p-preview .l.g{background:#28c840}
 #prompt .p-preview .pt{margin-left:6px;font-size:11.5px;color:var(--muted);font-family:var(--mono)}
-#prompt .p-chips{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 24px}
-#prompt .p-chips span{
-  padding:5px 11px;border-radius:999px;font-size:11.5px;font-weight:500;color:var(--ink-2);
-  border:1px solid var(--line);background:color-mix(in srgb,var(--a1) 9%,transparent);
-}
 #prompt .p-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
 #prompt .p-row .btn.primary{
-  font-size:15.5px;font-weight:600;padding:14px 26px;
-  animation:prompt-pulse 2.2s ease-out infinite;
+  font-size:15px;font-weight:600;padding:13px 24px;
 }
 #prompt .p-row .btn.ghost{font-size:13px;padding:12px 16px}
-@keyframes prompt-pulse{
-  0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--a1) 55%,transparent)}
-  70%{box-shadow:0 0 0 16px color-mix(in srgb,var(--a1) 0%,transparent)}
-  100%{box-shadow:0 0 0 0 color-mix(in srgb,var(--a1) 0%,transparent)}
-}
-@media (prefers-reduced-motion:reduce){#prompt .p-row .btn.primary{animation:none}}
 #prompt .p-close{
   position:absolute;top:14px;right:14px;width:28px;height:28px;border-radius:50%;
   border:0;background:rgba(var(--glass-2-rgb),.08);color:var(--muted);cursor:pointer;font-size:16px;line-height:1;
@@ -751,24 +699,6 @@ html[data-mode="light"] #prompt-backdrop{background:rgba(60,40,80,.3)}
 .lor-note{margin-top:14px;font-size:10.5px;color:var(--muted);font-family:var(--mono)}
 .lor-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
 #lor-section{scroll-margin-top:calc(var(--topbar) + 16px)}
-/* hero recommendation strip (minimal view) */
-.hero-rec{
-  display:flex;align-items:center;gap:14px 16px;flex-wrap:wrap;margin-top:22px;
-  padding:14px 16px;border-radius:16px;border:1px solid var(--glass-border);
-  background:color-mix(in srgb,var(--a1) 7%,transparent);
-  box-shadow:inset 0 1px 0 var(--glass-hi),0 2px 10px -8px rgba(0,0,0,.3);
-}
-.hero-rec .hr-ico{
-  width:40px;height:40px;border-radius:12px;display:grid;place-items:center;flex-shrink:0;
-  background:color-mix(in srgb,var(--a1) 16%,transparent);color:var(--a1);
-}
-.hero-rec .hr-ico svg{width:18px;height:18px}
-.hero-rec .hr-body{flex:1;min-width:240px}
-.hero-rec .hr-k{font-size:10px;text-transform:uppercase;letter-spacing:.16em;color:var(--muted);font-weight:600}
-.hero-rec .hr-q{font-size:14px;line-height:1.55;color:var(--ink);margin:3px 0 2px;font-weight:500;letter-spacing:-.01em}
-.hero-rec .hr-by{font-size:11.5px;color:var(--muted)}
-.hero-rec .hr-act{display:flex;gap:8px;flex-wrap:wrap}
-
 /* ============================================================
    7. RESUME
    ============================================================ */
@@ -1057,8 +987,8 @@ html[data-mode="light"] #prompt-backdrop{background:rgba(60,40,80,.3)}
    ============================================================ */
 .mode-switch{
   gap:2px;padding:2px;
-  background:color-mix(in srgb,var(--base) 94%,transparent);
-  border:1px solid color-mix(in srgb,var(--ink) 28%,transparent);
+  background:rgba(var(--glass-rgb),var(--glass-surface-alpha));
+  border:1px solid var(--glass-border);
   box-shadow:0 3px 12px rgba(0,0,0,.22),inset 0 1px 0 var(--glass-hi);
   backdrop-filter:blur(24px) saturate(185%);
   -webkit-backdrop-filter:blur(24px) saturate(185%);
@@ -1112,15 +1042,9 @@ input[type=range]::-moz-range-thumb{border:2px solid var(--ink);box-shadow:0 0 0
   cursor:grab;touch-action:none;user-select:none;-webkit-user-select:none;
 }
 .widget > h3.widget-drag-handle{display:flex;align-items:center;justify-content:space-between}
-.widget-drag-handle::after{
-  content:'⠿';display:inline-block;margin-left:auto;padding-left:6px;flex-shrink:0;
-  color:var(--muted);font-size:13px;line-height:1;letter-spacing:-2px;opacity:.8;
-}
 .widget.is-dragging{z-index:9999!important;box-shadow:0 24px 60px -18px rgba(0,0,0,.5),inset 0 1px 0 var(--glass-hi);cursor:grabbing;opacity:.98}
 .widget.is-dragging .widget-drag-handle{cursor:grabbing}
 .widget.desktop-widget-floating{position:absolute!important;max-width:calc(100vw - 24px);max-height:calc(100dvh - var(--topbar) - 18px);overflow:auto;touch-action:auto}
-.focus-map{display:block;width:100%;height:auto;overflow:visible;margin:2px 0 0}
-.focus-widget .w-head{margin-bottom:5px}
 @media (min-width:981px){.win-bar{cursor:grab}.win-bar:active{cursor:grabbing}}
 @media (max-width:720px){
   .mode-switch button{padding:4px 8px;font-size:10.5px}
@@ -1238,7 +1162,7 @@ input[type=range]::-moz-range-thumb{border:2px solid var(--ink);box-shadow:0 0 0
 .yg-legend span{display:inline-flex;align-items:center;gap:6px}
 .yg-key{width:16px;height:3px;display:inline-block;border-radius:99px;background:linear-gradient(90deg,var(--a2),var(--a1))}
 .yg-key.dependence{height:0;border-top:2px dashed var(--muted);background:none}
-.yg-boundary{display:flex;align-items:flex-start;gap:10px;padding:10px 11px;border-radius:10px;border:1px solid color-mix(in srgb,var(--a1) 30%,var(--line));background:color-mix(in srgb,var(--a1) 6%,var(--base));}
+.yg-boundary{display:flex;align-items:flex-start;gap:10px;padding:10px 11px;border-radius:10px;border:1px solid color-mix(in srgb,var(--a1) 30%,var(--line));background:color-mix(in srgb,var(--a1) 8%,transparent);}
 .yg-zero{display:grid;place-items:center;min-width:43px;height:31px;padding:0 6px;border-radius:8px;background:linear-gradient(135deg,var(--a1),var(--a2));color:var(--a-ink);font:700 11px var(--mono);}
 .yg-boundary b{display:block;color:var(--ink);font-size:11px;margin:1px 0 3px}
 .yg-boundary small{display:block;color:var(--ink-2);font-size:10.5px;line-height:1.5}
@@ -1247,7 +1171,7 @@ input[type=range]::-moz-range-thumb{border:2px solid var(--ink);box-shadow:0 0 0
 .yg-stats .stat{min-width:0}
 .yg-wrap p{font-size:12.75px;line-height:1.72;margin:0 0 12px}
 
-/* macOS-style month grid and a quiet Focus tile. */
+/* macOS-style month grid. */
 .clock-calendar-widget .w-head{margin-bottom:11px}
 .cal-weekdays,.cal-days{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:3px;text-align:center}
 .cal-weekdays{margin-bottom:5px;color:var(--muted);font:500 9px var(--mono)}
@@ -1258,15 +1182,6 @@ input[type=range]::-moz-range-thumb{border:2px solid var(--ink);box-shadow:0 0 0
 .cal-foot{display:flex;align-items:center;gap:6px;margin-top:10px;padding-top:8px;border-top:1px solid var(--line);font-size:10px;color:var(--muted)}
 .cal-foot strong{margin-left:auto;color:var(--ink-2);font-size:10px;font-weight:600}
 .cal-today-dot{width:6px;height:6px;border-radius:50%;background:var(--a1);box-shadow:0 0 8px color-mix(in srgb,var(--a1) 55%,transparent)}
-.focus-card-row{display:flex;align-items:center;gap:10px}
-.focus-symbol{display:grid;place-items:center;width:38px;height:38px;flex-shrink:0;border-radius:12px;border:1px solid var(--glass-border);background:linear-gradient(145deg,color-mix(in srgb,var(--a1) 22%,var(--glass-rgb)),color-mix(in srgb,var(--a2) 18%,var(--glass-rgb)));color:var(--ink)}
-.focus-symbol svg{width:18px;height:18px;stroke-width:1.7}
-.focus-card-copy{display:flex;flex-direction:column;gap:3px;min-width:0}
-.focus-card-copy b{font-size:12px;font-weight:600;color:var(--ink)}
-.focus-card-copy span{font-size:10.5px;line-height:1.35;color:var(--muted)}
-.focus-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px;margin-top:12px}
-.focus-steps span{padding:6px 4px;text-align:center;border-radius:7px;background:rgba(var(--glass-2-rgb),.045);border:1px solid var(--line);font-size:9.5px;color:var(--ink-2)}
-.focus-note{font-size:10px;line-height:1.5;color:var(--muted);margin:10px 1px 0}
 
 /* Contact rows keep icons, labels, values and trailing actions on a stable rhythm. */
 .contact-wrap{padding:24px 26px 32px}
@@ -1321,6 +1236,126 @@ input[type=range]::-moz-range-thumb{border:2px solid var(--ink);box-shadow:0 0 0
   }
   .desktop-icons .d-icon{margin:0}
 }
+/* ============================================================
+   16. TYPE + MOTION, SKILL TREE, QUOTES, FLUTE
+   ============================================================ */
+@property --spec{syntax:'<number>';inherits:true;initial-value:0}
+html{scroll-behavior:smooth}
+body{text-rendering:optimizeLegibility;font-optical-sizing:auto}
+h1,h2,h3,h4{text-wrap:balance}
+:focus-visible{outline:2px solid color-mix(in srgb,var(--a1) 70%,var(--ink));outline-offset:2px}
+
+/* Glass: a lit edge on every panel and window, and a highlight that follows the pointer. */
+.glass{--spec:0;transition:background .4s var(--ease),backdrop-filter .4s var(--ease),box-shadow .3s var(--ease),--spec .5s var(--ease)}
+.glass:hover{--spec:.16}
+.glass::after,.win::after{
+  content:'';position:absolute;inset:0;z-index:2;border-radius:inherit;padding:1px;pointer-events:none;
+  background:linear-gradient(140deg,rgba(255,255,255,.5),rgba(255,255,255,.07) 28%,rgba(255,255,255,0) 58%,rgba(255,255,255,.2));
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;opacity:.75;
+}
+.quote-card,.st-leaf,.swara{
+  background:rgba(var(--glass-2-rgb),.055);border:1px solid var(--line);
+  box-shadow:inset 0 1px 0 var(--glass-hi);
+}
+
+/* Entrance: panels rise into focus once, then the helper classes are removed. */
+.reveal{opacity:0;transform:translateY(18px) scale(.985);filter:blur(8px);transition:opacity .9s var(--ease),transform .9s var(--ease),filter .9s var(--ease)}
+.reveal.in{opacity:1;transform:none;filter:none}
+
+.widget h3{letter-spacing:.08em;font-weight:600}
+.w-meta{font-size:10px;color:var(--muted)}
+.proj-body-in{opacity:0;transition:opacity .3s var(--ease)}
+.proj.open .proj-body-in{opacity:1;transition-delay:.12s}
+.pf-name{font-size:29px;font-weight:650;letter-spacing:-.035em;margin:0 0 6px;min-height:1.1em}
+.pf-sub{font-size:13.5px;line-height:1.55;color:var(--muted);margin:0 0 14px;max-width:520px}
+@media (max-height:780px){.m-side{position:static}}
+
+/* Rotating quotes. Every quote shares one grid cell, so the card never changes height. */
+.quote-card{display:flex;flex-direction:column;margin:0;padding:20px 20px 16px;border-radius:20px;min-width:0}
+.q-stack{display:grid;margin:0;color:var(--ink);font-size:17px;line-height:1.42;font-weight:500;letter-spacing:-.02em}
+.q-stack > span{
+  grid-area:1/1;opacity:0;transform:translateY(8px);filter:blur(5px);pointer-events:none;
+  transition:opacity .7s var(--ease),transform .7s var(--ease),filter .7s var(--ease);
+}
+.q-stack > span.on{opacity:1;transform:none;filter:none;pointer-events:auto}
+.q-by{margin-top:16px;padding-top:12px;border-top:1px solid var(--line)}
+.q-by b{display:block;font-size:12.5px;font-weight:600;color:var(--ink)}
+.q-by span{display:block;margin-top:2px;font-size:11.5px;line-height:1.4;color:var(--muted)}
+.q-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:auto;padding-top:14px}
+.q-dots{display:flex;align-items:center}
+.q-dots button{width:14px;height:16px;padding:0;border:0;background:none;cursor:pointer;display:grid;place-items:center;transition:width .45s var(--spring)}
+.q-dots button::before{content:'';width:5px;height:5px;border-radius:99px;background:color-mix(in srgb,var(--ink) 28%,transparent);transition:width .45s var(--spring),background .3s var(--ease)}
+.q-dots button.on{width:24px}
+.q-dots button.on::before{width:16px;background:var(--a1)}
+.q-link{padding:0;border:0;background:none;font:500 12.5px var(--font);color:var(--ink-2);cursor:pointer;transition:color .2s var(--ease)}
+.q-link:hover{color:var(--a1)}
+.quote-widget{padding:15px 17px 14px}
+.quote-widget .w-head{margin-bottom:12px}
+.quote-widget .q-stack{font-size:15.5px;line-height:1.42}
+.quote-widget .q-by{margin-top:14px;padding-top:11px}
+.quote-widget .q-by b{font-size:11.5px}
+.quote-widget .q-by span{font-size:10.5px}
+.quote-widget .q-link{display:block;margin-top:11px;font-size:11.5px}
+
+/* Skill tree: trunk, four branches, leaves. */
+.st{position:relative;list-style:none;margin:4px 0 0;padding:0;--tl:color-mix(in srgb,var(--ink) 24%,transparent)}
+.st-branch{position:relative;padding:0 0 14px 22px}
+.st-branch:last-child{padding-bottom:0}
+.st-branch::before{content:'';position:absolute;left:3px;top:0;bottom:0;width:1px;background:var(--tl)}
+.st-branch:last-child::before{bottom:auto;height:3px}
+.st-branch::after{content:'';position:absolute;left:3px;top:0;width:15px;height:10px;border:solid var(--tl);border-width:0 0 1px 1px;border-bottom-left-radius:8px}
+.st-name{display:flex;align-items:center;gap:8px;height:20px;font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--ink)}
+.st-name::before{content:'';width:7px;height:7px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,var(--a1),var(--a2));box-shadow:0 0 0 3px color-mix(in srgb,var(--a1) 16%,transparent)}
+.st-leaves{position:relative;list-style:none;display:flex;flex-wrap:wrap;gap:5px;margin:7px 0 0;padding:0 0 0 15px}
+.st-leaves::before{content:'';position:absolute;left:3px;top:-8px;bottom:19px;width:1px;background:var(--tl)}
+.st-leaves::after{content:'';position:absolute;left:3px;bottom:12px;width:8px;height:8px;border:solid var(--tl);border-width:0 0 1px 1px;border-bottom-left-radius:6px}
+.st-leaf{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:999px;font:500 11.5px/1.15 var(--font);color:var(--ink-2);white-space:nowrap}
+button.st-leaf{color:var(--ink);cursor:pointer;transition:transform .4s var(--spring),background .2s var(--ease),border-color .2s var(--ease)}
+button.st-leaf::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--a1)}
+button.st-leaf:hover{transform:translateY(-1px);background:color-mix(in srgb,var(--a1) 16%,transparent);border-color:color-mix(in srgb,var(--a1) 45%,transparent)}
+.st-note{margin:13px 0 0;padding-top:10px;border-top:1px solid var(--line);font-size:11px;line-height:1.45;color:var(--muted);min-height:calc(2.9em + 10px)}
+
+/* Carnatic flute. */
+.m-grid{row-gap:18px}
+.m-main{grid-column:1;grid-row:1}
+.m-side{grid-column:2;grid-row:1/span 2}
+.flute-band{grid-column:1;grid-row:2;display:grid;grid-template-columns:minmax(0,260px) minmax(0,1fr);gap:20px 32px;align-items:center;padding:22px 26px;border-radius:22px}
+.flute-copy h2{font-size:19px;font-weight:600;letter-spacing:-.02em;margin:0 0 6px}
+.flute-copy p{margin:0;font-size:14px;line-height:1.55;color:var(--muted)}
+.flute{min-width:0}
+.fl-body{display:block;width:100%;padding:0;border:0;background:none;cursor:pointer;transform:rotate(-2deg);transition:transform .7s var(--spring)}
+.fl-body:hover{transform:rotate(-.6deg) translateY(-2px)}
+.fl-body svg{display:block;width:100%;height:auto;overflow:visible;filter:drop-shadow(0 9px 10px rgba(0,0,0,.32))}
+.fl-hole{fill:rgba(12,6,14,.62);transition:fill .3s var(--ease)}
+.fl-hole.on{fill:#fff;transition-duration:.05s}
+.swaras{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:6px;margin-top:14px}
+.swara{padding:7px 0;border-radius:999px;font:500 12px/1 var(--font);color:var(--ink-2);cursor:pointer;transition:transform .4s var(--spring),background .2s var(--ease),color .2s var(--ease),border-color .2s var(--ease)}
+.swara:hover{color:var(--ink);border-color:color-mix(in srgb,var(--a1) 45%,transparent)}
+.swara.on{transform:translateY(-3px);background:linear-gradient(135deg,var(--a1),var(--a2));color:var(--a-ink);border-color:transparent;transition-duration:.08s}
+.flute-widget .fl-body{transform:rotate(-1.2deg)}
+.flute-widget .fl-body:hover{transform:rotate(0deg) translateY(-1px)}
+.flute-widget .swaras{gap:3px;margin-top:9px}
+.flute-widget .swara{padding:5px 0;font-size:9.5px}
+
+@media (max-width:1080px){
+  .m-main,.m-side,.flute-band{grid-column:auto;grid-row:auto}
+}
+@media (max-width:900px){
+  .hero{grid-template-columns:1fr;gap:22px}
+  .hero-links{padding-top:20px}
+  .flute-band{grid-template-columns:1fr;padding:20px 18px}
+}
+@media (max-width:520px){
+  .swaras{gap:3px}
+  .swara{font-size:10.5px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .wall .oil-bg{animation:none}
+  .q-stack > span,.btn,.swara,button.st-leaf,.fl-body{transition-duration:.01s}
+}
+@media print{.win::after,.glass::after{display:none}}
 </style>
 </head>
 <body>
@@ -1434,43 +1469,32 @@ input[type=range]::-moz-range-thumb{border:2px solid var(--ink);box-shadow:0 0 0
 <!-- ============ MINIMAL VIEW ============ -->
 <main id="view-minimal">
   <section class="hero glass content-panel">
-    <div class="hero-pill"><span class="pdot"></span> Bioengineering · CS · EE @ UIUC</div>
-    <h1 class="hero-name" id="hero-name" data-tw data-tw-text="Taran Balakrishnan" data-tw-speed="85" data-tw-mistakes="0.16"></h1>
-    <div class="hero-tag" id="hero-tag" data-tw data-tw-text="Bioengineering, computation & strategy." data-tw-speed="65" data-tw-mistakes="0.14"></div>
-    <p class="hero-sub" id="hero-sub">
-      Bioengineering undergraduate at the University of Illinois Urbana-Champaign, double-minoring in
-      Computer Science and Electrical Engineering. I work on computational biology, medical devices,
-      and pharmaceutical strategy — building at the intersection of cells and code.
-    </p>
-    <div class="contact-row">
-      <button class="btn" data-copy="taranbalakrishnan7@gmail.com"><i data-lucide="mail" style="width:13px;height:13px"></i> taranbalakrishnan7@gmail.com</button>
-      <button class="btn" data-copy="+1 (847) 847-6527"><i data-lucide="phone" style="width:13px;height:13px"></i> +1 (847) 847-6527</button>
-      <a class="btn" href="https://github.com/TaranBalakrishnan007" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" style="width:13px;height:13px"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg> GitHub</a>
-      <a class="btn" href="https://www.linkedin.com/in/taran-balakrishnan-8761b9342/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" style="width:13px;height:13px"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> LinkedIn</a>
-    </div>
-    <div class="hero-cta">
-      <button class="btn primary" onclick="setMode('macos')">Enter macOS view <span style="opacity:.6">↗</span></button>
-      <button class="btn" onclick="downloadResume()"><i data-lucide="download" style="width:13px;height:13px"></i> Resume PDF</button>
-      <button class="btn" onclick="openLor()"><i data-lucide="award" style="width:13px;height:13px"></i> Letter of Recommendation</button>
-      <a class="btn" href="https://docs.google.com/document/d/1POYcx1Y2ipt3UxoKJQe6iCx6QdJk72WEzG2vFn_OZkw/edit?tab=t.0" target="_blank" rel="noopener">CAR-T paper ↗</a>
-    </div>
-    <div class="hero-rec" id="hero-rec">
-      <div class="hr-ico"><i data-lucide="award"></i></div>
-      <div class="hr-body">
-        <div class="hr-k">Letter of recommendation · Parexel</div>
-        <div class="hr-q">“I recommend Taran Balakrishnan without reservation and with my highest level of enthusiasm.”</div>
-        <div class="hr-by">Chris A. Learn, PhD, MBA, PMP · SVP, Head, Cell and Gene Therapy, Parexel</div>
+    <div class="hero-intro">
+      <div class="hero-pill"><span class="pdot"></span> Bioengineering · CS · EE @ UIUC</div>
+      <h1 class="hero-name" id="hero-name" data-tw data-tw-text="Taran Balakrishnan" data-tw-speed="85" data-tw-mistakes="0.16"></h1>
+      <p class="hero-sub" id="hero-sub">Undergraduate engineer working across computational biology, medical devices, and cell and gene therapy.</p>
+      <div class="hero-cta">
+        <button class="btn primary" onclick="setMode('macos')">Enter macOS view</button>
+        <button class="btn" onclick="viewResume()"><i data-lucide="file-text" style="width:13px;height:13px"></i> Resume</button>
+        <a class="btn" href="https://docs.google.com/document/d/1POYcx1Y2ipt3UxoKJQe6iCx6QdJk72WEzG2vFn_OZkw/edit?tab=t.0" target="_blank" rel="noopener"><i data-lucide="arrow-up-right" style="width:13px;height:13px"></i> CAR-T paper</a>
       </div>
-      <div class="hr-act">
-        <button class="btn primary small" onclick="openLor()">Read letter</button>
-        <button class="btn small" onclick="downloadLor()"><i data-lucide="download" style="width:13px;height:13px"></i> PDF</button>
+      <div class="hero-links">
+        <button data-copy="taranbalakrishnan7@gmail.com" title="Copy email"><i data-lucide="mail"></i> taranbalakrishnan7@gmail.com</button>
+        <button data-copy="+1 (847) 847-6527" title="Copy phone number"><i data-lucide="phone"></i> +1 (847) 847-6527</button>
+        <a href="https://github.com/TaranBalakrishnan007" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg> GitHub</a>
+        <a href="https://www.linkedin.com/in/taran-balakrishnan-8761b9342/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> LinkedIn</a>
       </div>
     </div>
+    <figure class="quote-card" data-quotes>
+      <blockquote class="q-stack"></blockquote>
+      <figcaption class="q-by"><b>Chris A. Learn, PhD, MBA, PMP</b><span>SVP, Head, Cell and Gene Therapy · Parexel</span></figcaption>
+      <div class="q-foot"><div class="q-dots"></div><button class="q-link" type="button" onclick="openLor()">Read the letter</button></div>
+    </figure>
   </section>
 
   <div class="m-grid">
     <section class="m-main glass content-panel">
-      <div class="sec-head"><h2 data-tw data-tw-text="Experience &amp; Research" data-tw-speed="26" data-tw-mistakes="0.05"></h2><span>tap to expand</span></div>
+      <div class="sec-head"><h2 data-tw data-tw-text="Experience &amp; Research" data-tw-speed="26" data-tw-mistakes="0.05"></h2></div>
       <div id="project-list-min"></div>
 
       <div class="sec-head" id="lor-section" style="margin-top:28px"><h2 data-tw data-tw-text="Letter of Recommendation" data-tw-speed="26" data-tw-mistakes="0.05"></h2><span>Parexel · Aug 2026</span></div>
@@ -1513,54 +1537,23 @@ input[type=range]::-moz-range-thumb{border:2px solid var(--ink);box-shadow:0 0 0
       </div>
 
       <div class="widget glass">
-        <div class="w-head"><h3>Key metrics</h3><span style="font-size:10px;color:var(--muted)">2025–26</span></div>
-        <div class="stat-grid">
-          <div class="stat"><b>98.2%</b><span>flex-sensor noise cut</span></div>
-          <div class="stat"><b>83.0%</b><span>melanoma phenotype accuracy</span></div>
-          <div class="stat"><b>3.0 ms</b><span>hand actuation latency</span></div>
-          <div class="stat"><b>200+</b><span>families in Ecuador model</span></div>
-        </div>
-      </div>
-
-      <div class="widget glass focus-widget">
-        <div class="w-head"><h3 data-tw data-tw-text="Focus map" data-tw-speed="20" data-tw-mistakes="0.05"></h3><span style="font-size:10px;color:var(--muted)">skill tree</span></div>
-        <svg class="focus-map" viewBox="0 0 260 174" role="img" aria-label="Skill tree connecting bioengineering with computation, devices, and strategy">
-          <defs><linearGradient id="focus-gradient" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--a1)"/><stop offset="1" stop-color="var(--a2)"/></linearGradient></defs>
-          <g fill="none" stroke="var(--line)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M130 34 V48 M43 48 H217 M43 48 V61 M130 48 V61 M217 48 V61"/>
-            <path d="M43 91 V105 M130 91 V105 M217 91 V105"/>
-          </g>
-          <rect x="69" y="7" width="122" height="27" rx="9" fill="url(#focus-gradient)" fill-opacity=".22" stroke="url(#focus-gradient)" stroke-opacity=".85"/>
-          <text x="130" y="24" text-anchor="middle" fill="var(--ink)" font-size="9" font-weight="700" letter-spacing=".8">BIOENGINEERING</text>
-          <g fill="color-mix(in srgb,var(--glass-rgb) 88%,transparent)" stroke="color-mix(in srgb,var(--a1) 55%,var(--line))" stroke-width="1">
-            <rect x="4" y="61" width="78" height="30" rx="8"/>
-            <rect x="91" y="61" width="78" height="30" rx="8"/>
-            <rect x="178" y="61" width="78" height="30" rx="8"/>
-          </g>
-          <g fill="var(--ink-2)" font-size="8" font-weight="600" text-anchor="middle">
-            <text x="43" y="79">COMPUTATION</text>
-            <text x="130" y="79">DEVICES</text>
-            <text x="217" y="79">STRATEGY</text>
-          </g>
-          <g fill="var(--a1)">
-            <circle cx="43" cy="105" r="2.5"/><circle cx="130" cy="105" r="2.5"/><circle cx="217" cy="105" r="2.5"/>
-          </g>
-          <g fill="var(--muted)" font-size="8" text-anchor="middle">
-            <text x="43" y="121">Cell models</text><text x="43" y="134">ML phenotypes</text>
-            <text x="130" y="121">Sensor systems</text><text x="130" y="134">Signal processing</text>
-            <text x="217" y="121">CAR-T logic</text><text x="217" y="134">Clinical design</text>
-          </g>
-          <path d="M12 151 H248" stroke="var(--line)" stroke-width="1"/>
-          <text x="130" y="165" text-anchor="middle" fill="var(--ink-2)" font-family="var(--mono)" font-size="8">CELLS  ×  CODE  ×  TRANSLATION</text>
-        </svg>
+        <div class="w-head"><h3>Skills</h3></div>
+        <div class="skill-tree"></div>
       </div>
     </aside>
+
+    <section class="flute-band glass content-panel">
+      <div class="flute-copy">
+        <h2>Carnatic flute</h2>
+        <p>Outside of engineering I play the Carnatic flute, the bamboo flute of South Indian classical music. Press a swara to hear it.</p>
+      </div>
+      <div class="flute"></div>
+    </section>
   </div>
 
   <footer class="m-foot">
     <span>© <span id="yr"></span> Taran Balakrishnan</span>
     <span>Chicago &amp; Champaign, IL</span>
-    <span style="font-size:12px">click any contact detail to copy · <button class="btn ghost small" style="padding:2px 6px;font-size:12px" onclick="downloadResume()">download resume</button> · <button class="btn ghost small" style="padding:2px 6px;font-size:12px" onclick="openLor()">recommendation letter</button></span>
   </footer>
 </main>
 
@@ -1622,16 +1615,10 @@ input[type=range]::-moz-range-thumb{border:2px solid var(--ink);box-shadow:0 0 0
       </div>
     </div>
 
-    <!-- Weather -->
-    <div class="widget glass desktop-widget" id="dw-weather">
-      <div class="w-head"><h3>Weather</h3><span style="font-size:10px;color:var(--muted)">Chicago</span></div>
-      <div class="weather-row">
-        <i data-lucide="sun" class="wx-icon"></i>
-        <div>
-          <div class="wx-temp">72°</div>
-          <div class="wx-sub">Sunny · H:78° L:64°</div>
-        </div>
-      </div>
+    <!-- Carnatic flute -->
+    <div class="widget glass desktop-widget flute-widget" id="dw-flute">
+      <div class="w-head"><h3>Carnatic flute</h3><span class="w-meta">press a swara</span></div>
+      <div class="flute"></div>
     </div>
 
     <!-- Flex sensor MA graph -->
@@ -1641,42 +1628,12 @@ input[type=range]::-moz-range-thumb{border:2px solid var(--ink);box-shadow:0 0 0
       <div class="w-note">raw signal vs moving average</div>
     </div>
 
-    <!-- Quick Links -->
-    <div class="widget glass desktop-widget" id="dw-links">
-      <div class="w-head"><h3>Quick Links</h3><span style="font-size:10px;color:var(--muted)">↗</span></div>
-      <div class="ql-grid">
-        <a class="ql-btn" href="https://github.com/TaranBalakrishnan007" target="_blank" rel="noopener" title="GitHub">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
-          <span>GitHub</span>
-        </a>
-        <a class="ql-btn" href="https://www.linkedin.com/in/taran-balakrishnan-8761b9342/" target="_blank" rel="noopener" title="LinkedIn">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-          <span>LinkedIn</span>
-        </a>
-        <a class="ql-btn" href="https://docs.google.com/document/d/1POYcx1Y2ipt3UxoKJQe6iCx6QdJk72WEzG2vFn_OZkw/edit?tab=t.0" target="_blank" rel="noopener" title="CAR-T paper">
-          <i data-lucide="file-text" style="width:16px;height:16px"></i>
-          <span>Paper</span>
-        </a>
-      </div>
-    </div>
-
-    <!-- Featured recommendation quote -->
-    <div class="widget glass desktop-widget lor-feature-widget" id="dw-lor-quote">
-      <div class="w-head">
-        <h3>From the letter</h3>
-        <span class="lor-feature-spark" aria-hidden="true">✦</span>
-      </div>
-      <div class="lor-feature-card">
-        <span class="lor-feature-quote-mark" aria-hidden="true">“</span>
-        <blockquote id="dw-lor-quote-text">His curiosity is genuine, his work ethic is exceptional.</blockquote>
-        <div class="lor-feature-source">
-          <b>CHRIS A. LEARN, PhD, MBA, PMP</b>
-          <span>SVP, Head, Cell and Gene Therapy · Parexel</span>
-        </div>
-      </div>
-      <button class="lor-feature-link" type="button" onclick="openLor()">
-        Read the full recommendation <i data-lucide="arrow-up-right" aria-hidden="true"></i>
-      </button>
+    <!-- Rotating quotes from the recommendation letter -->
+    <div class="widget glass desktop-widget quote-widget" id="dw-lor-quote" data-quotes>
+      <div class="w-head"><h3>From the letter</h3><div class="q-dots"></div></div>
+      <blockquote class="q-stack"></blockquote>
+      <div class="q-by"><b>Chris A. Learn, PhD, MBA, PMP</b><span>SVP, Head, Cell and Gene Therapy · Parexel</span></div>
+      <button class="q-link" type="button" onclick="openLor()">Read the full letter</button>
     </div>
 
 
@@ -1689,32 +1646,21 @@ input[type=range]::-moz-range-thumb{border:2px solid var(--ink);box-shadow:0 0 0
         <button class="light green" onclick="maxWin('win-portfolio')" title="Maximise"><span>+</span></button>
       </div>
       <div class="win-title">taran.bio — portfolio</div>
-      <div class="win-actions"><button class="mini-btn" onclick="openWin('win-lor')">Rec. Letter</button><button class="mini-btn" onclick="downloadResume()">Resume PDF</button></div>
+      <div class="win-actions"><button class="mini-btn" onclick="openWin('win-lor')">Rec. Letter</button><button class="mini-btn" onclick="openWin('win-resume')">Resume</button></div>
     </div>
     <div class="win-body">
-      <div class="hero-pill" style="margin-bottom:12px"><span class="pdot"></span> Bioengineering · CS · EE @ UIUC</div>
-      <h2 style="font-size:29px;letter-spacing:-.04em;font-weight:700;margin:0 0 8px;min-height:1.1em" data-tw data-tw-text="Taran Balakrishnan" data-tw-speed="80" data-tw-mistakes="0.14"></h2>
-      <p style="font-size:13px;line-height:1.7;color:var(--muted);margin:0 0 14px;max-width:520px">
-        Bioengineering undergraduate at the University of Illinois Urbana-Champaign (double minor in Computer Science
-        and Electrical Engineering), focused on computational biology, medical devices, and pharmaceutical business strategy.
-      </p>
+      <h2 class="pf-name" data-tw data-tw-text="Taran Balakrishnan" data-tw-speed="80" data-tw-mistakes="0.14"></h2>
+      <p class="pf-sub">Bioengineering at UIUC, with minors in Computer Science and Electrical Engineering.</p>
       <div class="contact-row" style="margin-top:0">
         <button class="btn small" data-copy="taranbalakrishnan7@gmail.com">taranbalakrishnan7@gmail.com</button>
         <button class="btn small" data-copy="+1 (847) 847-6527">+1 (847) 847-6527</button>
         <a class="btn small" href="https://github.com/TaranBalakrishnan007" target="_blank" rel="noopener">GitHub</a>
         <a class="btn small" href="https://www.linkedin.com/in/taran-balakrishnan-8761b9342/" target="_blank" rel="noopener">LinkedIn</a>
       </div>
-      <div class="tags" style="margin-top:14px">
-        <span>Computational biology</span><span>Cell &amp; gene therapy</span><span>Bionic prosthetics</span>
-        <span>Synthetic logic circuits</span><span>Neural network design</span>
-      </div>
-      <div class="sec-head" style="margin-top:16px"><h2 data-tw data-tw-text="Selected experience" data-tw-speed="24" data-tw-mistakes="0.05"></h2><span>tap to expand</span></div>
+      <div class="sec-head" style="margin-top:20px"><h2 data-tw data-tw-text="Experience" data-tw-speed="24" data-tw-mistakes="0.05"></h2></div>
       <div id="project-list-win"></div>
-      <div class="sec-head" style="margin-top:20px"><h2 data-tw data-tw-text="Stack &amp; coursework" data-tw-speed="24" data-tw-mistakes="0.05"></h2></div>
-      <div class="stat-grid" style="margin-top:2px">
-        <div class="stat"><b style="font-size:12px;line-height:1.5">C++, Python, Kotlin, Java, MATLAB</b><span>Languages</span></div>
-        <div class="stat"><b style="font-size:12px;line-height:1.5">PyTorch, TensorFlow, Scikit-learn, Pandas, Kivy3D, AutoCAD</b><span>Frameworks</span></div>
-      </div>
+      <div class="sec-head" style="margin-top:22px"><h2 data-tw data-tw-text="Skills" data-tw-speed="24" data-tw-mistakes="0.05"></h2></div>
+      <div class="skill-tree"></div>
     </div>
   </section>
 
@@ -1727,7 +1673,7 @@ input[type=range]::-moz-range-thumb{border:2px solid var(--ink);box-shadow:0 0 0
         <button class="light green" onclick="maxWin('win-biolab')" title="Maximise"><span>+</span></button>
       </div>
       <div class="win-title">BioLab — interactive models</div>
-      <div class="win-actions"><span class="mini-btn" style="cursor:default">60 fps</span></div>
+      <div class="win-actions"></div>
     </div>
 
     <div class="bl-tabs">
@@ -1851,12 +1797,13 @@ input[type=range]::-moz-range-thumb{border:2px solid var(--ink);box-shadow:0 0 0
         <button class="light green" onclick="maxWin('win-resume')" title="Maximise"><span>+</span></button>
       </div>
       <div class="win-title">Resume_Taran_Balakrishnan_FA2026.pdf</div>
-      <div class="win-actions"><button class="mini-btn" onclick="downloadResume()">Download PDF</button></div>
+      <div class="win-actions"><button class="mini-btn" onclick="viewResume()">Open PDF</button></div>
     </div>
     <div class="win-body" style="padding:0">
       <div class="resume" id="resume-doc">
         <div class="dl-bar">
-          <button class="btn primary small" onclick="downloadResume()"><i data-lucide="download" style="width:13px;height:13px"></i> Download PDF</button>
+          <button class="btn primary small" onclick="viewResume()"><i data-lucide="arrow-up-right" style="width:13px;height:13px"></i> Open PDF in browser</button>
+          <button class="btn ghost small" onclick="downloadResume()"><i data-lucide="download" style="width:13px;height:13px"></i> Download</button>
           <button class="btn ghost small" onclick="printResume()">Print</button>
           <button class="btn ghost small" onclick="openWin('win-lor')"><i data-lucide="award" style="width:13px;height:13px"></i> Recommendation letter</button>
           <button class="btn ghost small" data-copy="taranbalakrishnan7@gmail.com">Copy email</button>
@@ -2149,10 +2096,10 @@ input[type=range]::-moz-range-thumb{border:2px solid var(--ink);box-shadow:0 0 0
             <span class="c-body"><span class="c-label">LinkedIn</span><span class="c-val">Taran Balakrishnan</span></span>
             <span class="c-copy">open ↗</span>
           </a>
-          <button class="c-row" onclick="downloadResume()">
-            <span class="c-ico"><i data-lucide="download"></i></span>
+          <button class="c-row" onclick="viewResume()">
+            <span class="c-ico"><i data-lucide="file-text"></i></span>
             <span class="c-body"><span class="c-label">Resume</span><span class="c-val">Resume_Taran_Balakrishnan_FA2026.pdf</span></span>
-            <span class="c-copy">PDF</span>
+            <span class="c-copy">open ↗</span>
           </button>
           <button class="c-row" onclick="downloadLor()">
             <span class="c-ico"><i data-lucide="award"></i></span>
@@ -2175,13 +2122,11 @@ input[type=range]::-moz-range-thumb{border:2px solid var(--ink);box-shadow:0 0 0
 <div id="prompt-backdrop" onclick="dismissPrompt()"></div>
 <div id="prompt" class="glass" role="dialog" aria-modal="true" aria-labelledby="prompt-title">
   <button class="p-close" onclick="dismissPrompt()" aria-label="Close">×</button>
-  <div class="p-kicker"><span class="pdot"></span> Interactive experience</div>
-  <h4 id="prompt-title">Step into the macOS desktop</h4>
-  <p>Explore this portfolio as a full desktop workspace — and it opens straight into the BioLab, where you can run three live simulators.</p>
+  <h4 id="prompt-title">Try the macOS view</h4>
+  <p>The same portfolio as a desktop, with draggable windows, a dock, and three simulations you can run in the BioLab.</p>
   <div class="p-preview" aria-hidden="true"><span class="l r"></span><span class="l y"></span><span class="l g"></span><span class="pt">BioLab — interactive models</span></div>
-  <div class="p-chips"><span>Draggable windows</span><span>Dock &amp; Spotlight</span><span>3 live simulators</span></div>
   <div class="p-row">
-    <button class="btn primary" id="prompt-cta" onclick="setMode('macos'); dismissPrompt();">Enter macOS view <span style="opacity:.7">↗</span></button>
+    <button class="btn primary" id="prompt-cta" onclick="setMode('macos'); dismissPrompt();">Enter macOS view</button>
     <button class="btn ghost" onclick="dismissPrompt()">Stay in minimal view</button>
   </div>
 </div>
@@ -2287,6 +2232,7 @@ const SPOT_ITEMS = [
   {label:'Copy phone', icon:'phone', action:()=>copyText(PHONE)},
   {label:'GitHub ↗', icon:'github', action:()=>window.open(GITHUB,'_blank','noopener')},
   {label:'LinkedIn ↗', icon:'linkedin', action:()=>window.open(LINKEDIN,'_blank','noopener')},
+  {label:'View resume PDF ↗', icon:'file-text', action:()=>viewResume()},
   {label:'Download resume PDF', icon:'download', action:()=>downloadResume()},
   {label:'Download letter of recommendation PDF', icon:'download', action:()=>downloadLor()},
   {label:'Burberry palette', icon:'palette', action:()=>setScheme('burberry')},
@@ -2460,6 +2406,8 @@ function downloadResume(){
   a.href=getResumeUrl(); a.download=RESUME_FILENAME;
   document.body.appendChild(a); a.click(); a.remove();
 }
+// Opens the PDF in the browser's own viewer, where it can be read, saved or printed.
+function viewResume(){ window.open(getResumeUrl(),'_blank','noopener'); }
 function printResume(){
   if(state.mode!=='macos') setMode('macos',{keepClosed:true});
   openWin('win-resume');
@@ -2474,7 +2422,15 @@ function printResume(){
    LETTER OF RECOMMENDATION
    ============================================================ */
 const LOR_FILENAME='LoR_Taran_Balakrishnan_Parexel_Aug2026.pdf';
-const LOR_FEATURED_QUOTE='His curiosity is genuine, his work ethic is exceptional.';
+// Verbatim excerpts from the letter below; the hero card and the desktop widget cycle through them.
+const LOR_QUOTES=[
+  'I recommend Taran Balakrishnan without reservation and with my highest level of enthusiasm.',
+  'A rare combination of scientific curiosity, intellectual rigor, technical aptitude, and professional maturity.',
+  'His curiosity is genuine, his work ethic is exceptional, and his enthusiasm for advancing science is evident in everything he does.',
+  'The quality of both his written and visual scientific communication was outstanding.',
+  'An unusually broad understanding of the cell and gene therapy field for someone at this stage of his education.',
+  'Intellectually independent, highly motivated, receptive to feedback, and committed to excellence.'
+];
 const LOR_PARAS=[
   'It is my distinct pleasure to recommend Taran Balakrishnan, a Bioengineering student at the University of Illinois Urbana-Champaign, who served as a Summer 2026 intern with our Cell and Gene Therapy team at Parexel. During his internship, Taran demonstrated a rare combination of scientific curiosity, intellectual rigor, technical aptitude, and professional maturity that far exceeds what I typically observe in undergraduate students.',
   'From the outset, Taran distinguished himself through his ability to engage deeply with highly complex topics at the intersection of immunology, synthetic biology, genetic engineering, and computational modeling. His internship culminated in the development of both a scientific poster and thesis entitled <i>The Application of Synthetic Logic Gate Circuits To Treat B-cell Lymphomas</i>, in which he explored novel approaches to enhancing the efficacy, safety, and durability of CAR-T cell therapies through the implementation of Boolean logic-gated cellular architectures.',
@@ -2495,8 +2451,6 @@ function lorLetterHTML(){
 function renderLor(){
   const html=lorLetterHTML();
   ['#lor-letter-win','#lor-letter-min'].forEach(id=>{const el=$(id); if(el) el.innerHTML=html;});
-  const featuredQuote=$('#dw-lor-quote-text');
-  if(featuredQuote) featuredQuote.textContent=LOR_FEATURED_QUOTE;
 }
 let _lorUrl=null;
 function getLorUrl(){
@@ -3231,7 +3185,7 @@ function termPrint(html,cls=''){
   out.appendChild(d); out.scrollTop=out.scrollHeight;
 }
 let termHistory=[],histIdx=-1;
-const COMMANDS=['help','about','projects','skills','experience','parexel','bmes','ccil','gfx','yunguilla','rett','contact','email','github','linkedin','resume','lor','recommendation','paper','open','theme','mode','glass','clear','date','whoami','neofetch','ls','cat','sudo','exit'];
+const COMMANDS=['help','about','projects','skills','experience','parexel','bmes','ccil','gfx','yunguilla','rett','contact','email','github','linkedin','resume','lor','recommendation','paper','flute','open','theme','mode','glass','clear','date','whoami','neofetch','ls','cat','sudo','exit'];
 
 function termSubmit(e){
   e.preventDefault();
@@ -3248,10 +3202,10 @@ function runCommand(cmd,raw){
   const arg=raw.split(/\s+/).slice(1).join(' ');
   switch(cmd){
     case 'help':
-      termPrint(`commands: <span class="ok">about · projects · skills · experience · parexel · bmes · ccil · gfx · yunguilla · rett · contact · resume · lor · open &lt;window&gt; · theme &lt;name&gt; · mode &lt;minimal|macos&gt; · glass &lt;0-100&gt; · clear · date · whoami · neofetch</span>`);
+      termPrint(`commands: <span class="ok">about · projects · skills · experience · parexel · bmes · ccil · gfx · yunguilla · rett · contact · resume · lor · flute · open &lt;window&gt; · theme &lt;name&gt; · mode &lt;minimal|macos&gt; · glass &lt;0-100&gt; · clear · date · whoami · neofetch</span>`);
       break;
     case 'about':
-      termPrint('Taran Balakrishnan — B.S. Bioengineering @ UIUC (expected May 2029), double minor in CS &amp; EE. Computational biology, medical devices, pharmaceutical strategy.');
+      termPrint('Taran Balakrishnan — B.S. Bioengineering @ UIUC (expected May 2029), double minor in CS &amp; EE. Computational biology, medical devices, cell and gene therapy.');
       break;
     case 'projects':
       termPrint('1. Parexel CAGT — multi-antigenic CAR-T logic circuits, TSHA-102 Rett syndrome trial<br>2. CCIL — 3D minimal cell + melanoma phenotype ML (83%)<br>3. BMES robotic hand — 3 ms latency, 98.2% noise reduction<br>4. GFX Scholars — Yunguilla / Mashpe food-sovereignty logistic model');
@@ -3289,6 +3243,7 @@ function runCommand(cmd,raw){
     case 'lor':
     case 'letter':
     case 'recommendation': openWin('win-lor'); termPrint('opening letter of recommendation…'); break;
+    case 'flute': SWARAS.forEach((_,i)=>playSwara($('#dw-flute .flute'),i,i*0.34)); termPrint('Sa Ri Ga Ma Pa Da Ni Sa'); break;
     case 'clear': $('#term-out').innerHTML=''; break;
     case 'date': termPrint(new Date().toString()); break;
     case 'whoami': termPrint('taran — bioengineer, occasional typist'); break;
@@ -4065,6 +4020,183 @@ function loop(t){
 }
 
 /* ============================================================
+   SKILL TREE
+   ============================================================ */
+// Every skill named on the resume, grouped once. A project id links a leaf to the work it was used in.
+const SKILL_TREE=[
+  {name:'Code',leaves:[['C++','bmes'],['Python','ccil'],['MATLAB'],['Java'],['Kotlin'],['Git']]},
+  {name:'Modelling & ML',leaves:[['Scikit-learn','ccil'],['Kivy3D','ccil'],['Pandas','gfx'],['NumPy','gfx'],['PyTorch'],['TensorFlow'],['Matplotlib'],['Neural network design']]},
+  {name:'Devices',leaves:[['Circuit design','bmes'],['Signal processing','bmes'],['Arduino','bmes'],['3D printing','bmes'],['AutoCAD','bmes'],['Fusion','bmes']]},
+  {name:'Biology',leaves:[['Computational biology','ccil'],['Cell & gene therapy','parexel'],['CAR-T architecture','parexel'],['Synthetic logic circuits','parexel'],['Tissue culture']]}
+];
+const SKILL_NOTE='Marked skills open the work they were used in.';
+function renderSkillTree(){
+  const html='<ul class="st">'+SKILL_TREE.map(b=>
+    `<li class="st-branch"><div class="st-name">${escapeHtml(b.name)}</div><ul class="st-leaves">`
+    + b.leaves.map(([name,pid])=>pid
+        ? `<li><button type="button" class="st-leaf" data-pid="${pid}">${escapeHtml(name)}</button></li>`
+        : `<li><span class="st-leaf">${escapeHtml(name)}</span></li>`).join('')
+    + '</ul></li>').join('')+`</ul><p class="st-note">${SKILL_NOTE}</p>`;
+  $$('.skill-tree').forEach(host=>{
+    host.innerHTML=html;
+    const note=host.querySelector('.st-note');
+    const describe=e=>{
+      const leaf=e.target.closest('button.st-leaf'); if(!leaf) return;
+      const p=PROJECTS.find(x=>x.id===leaf.dataset.pid);
+      if(p) note.textContent=`${leaf.textContent} · ${p.org}, ${p.title}`;
+    };
+    host.addEventListener('pointerover',describe);
+    host.addEventListener('focusin',describe);
+    host.addEventListener('pointerleave',()=>{note.textContent=SKILL_NOTE;});
+    host.addEventListener('click',e=>{
+      const leaf=e.target.closest('button.st-leaf');
+      if(leaf) focusProject(leaf.dataset.pid);
+    });
+  });
+}
+function focusProject(pid){
+  const desktop=state.mode==='macos';
+  if(desktop) openWin('win-portfolio');
+  const art=document.querySelector(`${desktop?'#project-list-win':'#project-list-min'} .proj[data-pid="${pid}"]`);
+  if(!art) return;
+  art.parentElement.querySelectorAll('.proj.open').forEach(x=>{ if(x!==art) x.classList.remove('open'); });
+  art.classList.add('open');
+  setTimeout(()=>art.scrollIntoView({behavior:'smooth',block:'center'}),desktop?160:0);
+}
+
+/* ============================================================
+   RECOMMENDATION QUOTES
+   ============================================================ */
+const QUOTE_INTERVAL=7000;
+function initQuotes(){
+  $$('[data-quotes]').forEach(host=>{
+    const stack=host.querySelector('.q-stack'),dots=host.querySelector('.q-dots');
+    if(!stack || !dots) return;
+    stack.innerHTML=LOR_QUOTES.map(q=>`<span>“${q}”</span>`).join('');
+    dots.innerHTML=LOR_QUOTES.map((_,k)=>`<button type="button" aria-label="Quote ${k+1} of ${LOR_QUOTES.length}"></button>`).join('');
+    const items=Array.from(stack.children),btns=Array.from(dots.children);
+    let cur=0,timer=null;
+    const show=k=>{
+      cur=(k+items.length)%items.length;
+      items.forEach((el,j)=>{el.classList.toggle('on',j===cur);el.setAttribute('aria-hidden',String(j!==cur));});
+      btns.forEach((b,j)=>b.classList.toggle('on',j===cur));
+    };
+    const stop=()=>{clearInterval(timer);timer=null;};
+    // Only advances while the card is actually on screen, and holds still under the pointer.
+    const start=()=>{stop();timer=setInterval(()=>{ if(!document.hidden && host.offsetParent!==null) show(cur+1); },QUOTE_INTERVAL);};
+    dots.addEventListener('click',e=>{
+      const k=btns.indexOf(e.target.closest('button'));
+      if(k>-1){show(k);start();}
+    });
+    host.addEventListener('pointerenter',stop);
+    host.addEventListener('pointerleave',start);
+    show(0);start();
+  });
+}
+
+/* ============================================================
+   CARNATIC FLUTE
+   ============================================================ */
+const SWARAS=['Sa','Ri','Ga','Ma','Pa','Da','Ni','Sa'];
+const SWARA_RATIO=[1,9/8,5/4,4/3,3/2,5/3,15/8,2];   // Shankarabharanam, just intonation
+const SA_HZ=392;
+function fluteSVG(uid){
+  const holes=SWARAS.map((_,i)=>`<ellipse class="fl-hole" data-n="${i}" cx="${118+i*23}" cy="20" rx="4.2" ry="3.1"/>`).join('');
+  return `<svg viewBox="0 0 320 40" aria-hidden="true">
+    <defs><linearGradient id="${uid}" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="var(--a2)"/><stop offset="1" stop-color="var(--a1)"/></linearGradient></defs>
+    <rect x="4" y="13" width="312" height="14" rx="7" fill="url(#${uid})"/>
+    <rect x="4" y="20" width="312" height="7" rx="3.5" fill="rgba(0,0,0,.16)"/>
+    <path d="M12 16.2H308" stroke="rgba(255,255,255,.5)" stroke-width="1.3" stroke-linecap="round"/>
+    <path d="M17 13.4V26.6M21.5 13.4V26.6M86 13.4V26.6M298.5 13.4V26.6M303 13.4V26.6" stroke="rgba(12,6,14,.42)" stroke-width="1.5"/>
+    <ellipse cx="54" cy="20" rx="5.6" ry="3.6" fill="rgba(12,6,14,.7)"/>
+    ${holes}
+    <rect x="4" y="13" width="312" height="14" rx="7" fill="none" stroke="rgba(255,255,255,.28)" stroke-width=".7"/>
+  </svg>`;
+}
+function renderFlutes(){
+  $$('.flute').forEach((host,n)=>{
+    host.innerHTML=`<button type="button" class="fl-body" aria-label="Play the ascending scale">${fluteSVG('flute-grad-'+n)}</button>
+      <div class="swaras">${SWARAS.map((sw,i)=>`<button type="button" class="swara" data-n="${i}"${i===7?' aria-label="Upper Sa"':''}>${sw}</button>`).join('')}</div>`;
+    host.addEventListener('click',e=>{
+      const sw=e.target.closest('.swara');
+      if(sw) playSwara(host,+sw.dataset.n,0);
+      else if(e.target.closest('.fl-body')) SWARAS.forEach((_,i)=>playSwara(host,i,i*0.34));
+    });
+  });
+}
+function playSwara(host,i,delay){
+  fluteTone(SA_HZ*SWARA_RATIO[i],delay);
+  if(!host) return;
+  setTimeout(()=>{
+    const lit=Array.from(host.querySelectorAll(`[data-n="${i}"]`));
+    lit.forEach(el=>el.classList.add('on'));
+    setTimeout(()=>lit.forEach(el=>el.classList.remove('on')),400);
+  },delay*1000);
+}
+// A soft flute voice: a sine with a quiet octave, slow vibrato, and a little filtered breath.
+function fluteTone(freq,delay=0){
+  unlockAudio();
+  if(!audioCtx) return;
+  const c=audioCtx,t=c.currentTime+delay+0.02,dur=0.62;
+  const out=c.createGain();
+  out.gain.setValueAtTime(0.0001,t);
+  out.gain.linearRampToValueAtTime(0.14,t+0.07);
+  out.gain.setValueAtTime(0.14,t+dur-0.22);
+  out.gain.exponentialRampToValueAtTime(0.0001,t+dur);
+  out.connect(c.destination);
+  const tone=c.createOscillator();tone.frequency.value=freq;
+  const vib=c.createOscillator(),vibDepth=c.createGain();
+  vib.frequency.value=5.5;vibDepth.gain.value=freq*0.004;
+  vib.connect(vibDepth);vibDepth.connect(tone.frequency);
+  const octave=c.createOscillator(),octaveGain=c.createGain();
+  octave.frequency.value=freq*2;octaveGain.gain.value=0.2;
+  const len=Math.floor(c.sampleRate*dur),buf=c.createBuffer(1,len,c.sampleRate),data=buf.getChannelData(0);
+  for(let k=0;k<len;k++) data[k]=Math.random()*2-1;
+  const breath=c.createBufferSource();breath.buffer=buf;
+  const band=c.createBiquadFilter();band.type='bandpass';band.frequency.value=freq*2;band.Q.value=2;
+  const breathGain=c.createGain();breathGain.gain.value=0.05;
+  tone.connect(out);
+  octave.connect(octaveGain);octaveGain.connect(out);
+  breath.connect(band);band.connect(breathGain);breathGain.connect(out);
+  [tone,vib,octave,breath].forEach(node=>{node.start(t);node.stop(t+dur+0.05);});
+}
+
+/* ============================================================
+   ENTRANCE + GLASS HIGHLIGHT
+   ============================================================ */
+function initReveal(){
+  if(!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const els=$$('#view-minimal .hero, #view-minimal .m-main, #view-minimal .m-side .widget, #view-minimal .flute-band');
+  els.forEach(el=>el.classList.add('reveal'));
+  const io=new IntersectionObserver(entries=>{
+    entries.filter(en=>en.isIntersecting).forEach((en,n)=>{
+      const el=en.target;
+      io.unobserve(el);
+      el.style.transitionDelay=(n*90)+'ms';
+      el.classList.add('in');
+      // The helper classes come off afterwards so they never fight widget dragging.
+      setTimeout(()=>{el.classList.remove('reveal','in');el.style.transitionDelay='';},1100+n*90);
+    });
+  },{threshold:.06});
+  els.forEach(el=>io.observe(el));
+}
+function initGlassHighlight(){
+  let frame=0,last=null;
+  document.addEventListener('pointermove',e=>{
+    last=e;
+    if(frame) return;
+    frame=requestAnimationFrame(()=>{
+      frame=0;
+      const panel=last.target.closest && last.target.closest('.glass');
+      if(!panel) return;
+      const r=panel.getBoundingClientRect();
+      panel.style.setProperty('--mx',(last.clientX-r.left)+'px');
+      panel.style.setProperty('--my',(last.clientY-r.top)+'px');
+    });
+  },{passive:true});
+}
+
+/* ============================================================
    INIT
    ============================================================ */
 function showPrompt(){
@@ -4104,6 +4236,10 @@ function init(){
   setGlass(state.glass);
   renderProjects();
   renderLor();
+  renderSkillTree();
+  renderFlutes();
+  initQuotes();
+  initGlassHighlight();
   initWidgetDrag();
   renderDesktopIcons();
   renderDock();
@@ -4138,7 +4274,8 @@ function init(){
   $$('[data-mode-btn]').forEach(b=> b.classList.toggle('on', b.dataset.modeBtn === 'minimal'));
   const appName=$('#tb-app-name'); if(appName) appName.textContent='Taran Balakrishnan';
 
-  // Type the hero title/tag — no flash since they start empty
+  initReveal();
+  // The hero name starts empty, so typing it in never flashes.
   setTimeout(()=>hydrate($('#view-minimal')), 220);
 
   let seen=false;
